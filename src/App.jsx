@@ -5,13 +5,17 @@ import Filters from './components/Filters'
 import Graphs from './components/Graphs'
 
 function App() {
+  const [xAxis, setXAxis] = useState("weight");
+  const handleXAxisChange = (value) => {
+    setXAxis(value);
+  }
 
   return (
     <>
       <h1>Fitness Stats</h1>
       <Summary />
-      <Filters />
-      <Graphs /> 
+      <Filters default={xAxis} onChange={handleXAxisChange} />
+      <Graphs selectedXAxis={xAxis} />
     </>
   )
 }

@@ -1,44 +1,39 @@
 import { useState } from 'react';
 
 function FilterRadio(props) {
-    const [selectedValue, setSelectedValue] = useState(props.default);
+    //const [selectedValue, setSelectedValue] = useState(props.default);
 
     const handleChange = (event) => {
-        setSelectedValue(event.target.value);
+        // setSelectedValue(event.target.value);
+        if (props.onChange) {
+            props.onChange(event.target.value);
+        }
     };
     //rewrite this section using data.map to save space and time
+    const data = [
+        { value: 'weight', label: 'Weight(kg)' }, //does value need to have the exact syntax of the csv?
+        { value: 'height', label: 'Height(m)' },
+        { value: 'Max_BPM', label: 'Max BPM' },
+        { value: 'Avg_BPM', label: 'Average BPM' },
+        { value: 'Resting_BPM', label: 'Resting BPM' },
+        { value: 'Session_Duration', label: 'Session Duration(hours)' },
+        { value: 'Calories_Burned', label: 'Calories Burned' },
+        { value: 'Fat_Percentage', label: 'Fat Percentage' },
+        { value: 'BMI', label: 'BMI' },
+    ];
     return (
         <form >
-            <label>
-                <input
-                    type="radio"
-                    name={props.name} //I need to pick a unique name for each group of radio buttons so that they are grouped together correctly.
-                    value="weight"
-                    checked={selectedValue === 'weight'}
-                    onChange={handleChange}
-                /> Weight(kg)
-            </label>
-            <br />
-            <label>
-                <input
-                    type="radio"
-                    name={props.name}
-                    value="height"
-                    checked={selectedValue === 'height'}
-                    onChange={handleChange}
-                /> Height(m)
-            </label>
-            <br />
-            <label>
-                <input
-                    type="radio"
-                    name={props.name}
-                    value="Max_BPM"
-                    checked={selectedValue === 'Max_BPM'}
-                    onChange={handleChange}
-                /> Max BPM
-            </label>
-            <br />
+            {data.map((item) => (
+                <label key={item.value}>
+                    <input
+                        type="radio"
+                        name={props.name} //I need to pick a unique name for each group of radio buttons so that they are grouped together correctly.
+                        value={item.value}
+                        checked={props.default === item.value}
+                        onChange={handleChange}
+                    /> {item.label}
+                </label>
+            ))}
         </form>
     );
 }

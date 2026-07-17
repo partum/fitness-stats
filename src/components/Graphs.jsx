@@ -7,7 +7,18 @@ const parsedData = d3.csvParse(csvText, (row) => ({
   Calories_Burned: Number(row.Calories_Burned) || 0,
 }));
 
-const defaultData = parsedData.map((row) => row.Calories_Burned);
+const defaultData = parsedData.map((row) => ({
+  Calories_Burned: Number(row.Calories_Burned) || 0,
+  Weight: Number(row.Weight) || 0,
+  Height: Number(row.Height) || 0,
+  Max_BPM: Number(row.Max_BPM) || 0,
+  Avg_BPM: Number(row.Avg_BPM) || 0,
+  Resting_BPM: Number(row.Resting_BPM) || 0,
+  Calories_Burned: Number(row.Calories_Burned) || 0,
+  Session_Duration: Number(row.Session_Duration) || 0,
+  Fat_Percentage: Number(row.Fat_Percentage) || 0,
+  BMI: Number(row.BMI) || 0,
+}));
 
 export default function Graphs({
   data = defaultData,
@@ -15,22 +26,9 @@ export default function Graphs({
   marginRight = 30,
   marginBottom = 30,
   marginLeft = 60,
-  width = 460 - marginLeft - marginRight,
+  width = 600 - marginLeft - marginRight,
   height = 400 - marginTop - marginBottom,
 }) {
-  const values = Array.isArray(data) ? data : [];
-  //const x = d3.scaleLinear([0, values.length - 1], [marginLeft, width - marginRight]);
-  const x = d3.scaleLinear()
-    .domain([0, values.length - 1])
-    .range([marginLeft, width - marginRight]);
-
-  const y = d3.scaleLinear([0, Math.max(...values, 0)], [height - marginBottom, marginTop]);
-  const line = d3.line((_, i) => x(i), (d) => y(d));
-
-  data = parsedData.map((row) => ({
-    Avg_BPM: Number(row.Avg_BPM) || 0,
-    Calories_Burned: Number(row.Calories_Burned) || 0,
-  }));
 
   let maxCalories = d3.max(data, (d) => d.Calories_Burned);
   let minCalories = d3.min(data, (d) => d.Calories_Burned);
@@ -65,6 +63,7 @@ export default function Graphs({
         .attr("cy", function (d) { return y(d.Calories_Burned); })
         .attr("r", 1.5)
         .style("fill", "#69b3a2")
+        .attr("transform", `translate(${marginRight}, -${marginRight})`);
     }, [])
 
     return (
@@ -76,16 +75,7 @@ export default function Graphs({
 
   return (
     <span>
-      <p>Calories Burned Over Time</p>
-      <svg width={width} height={height}>
-        <path fill="none" stroke="currentColor" strokeWidth="1.5" d={line(values)} />
-        <g fill="white" stroke="currentColor" strokeWidth="1.5">
-          {values.map((d, i) => (
-            <circle key={i} cx={x(i)} cy={y(d)} r="2.5" />
-          ))}
-        </g>
-        <g transform='translate(0, ${height})'></g>
-      </svg>
+      <h3>Title</h3>
       {GraphTest()}
       <h2>Test</h2>
     </span>
