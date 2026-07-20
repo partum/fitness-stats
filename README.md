@@ -1,21 +1,21 @@
 ## To Do
 - [x] create a dummy summary  
 - [x] decide exactly what the graph should show. 
---[x] what should be on the x axis? What should be on the y axis?  
---[x] what should be filtered?  
+  -[x] what should be on the x axis? What should be on the y axis?  
+  -[x] what should be filtered?  
 - [x] create a dummy filter section. 
 - [ ] implement graph. 
--- [x] scatter plot  
--- [x] use Average_BPM and Calories_Burned as initial values. 
--- [x] only include Weight (kg),Height (m),Max_BPM,Avg_BPM,Resting_BPM,Session_Duration (hours),Calories_Burned,Fat_Percentage,BMI  
--- [] add axis lables
-[] implement filters. 
--- [] when one value is selected, update the graph  
-[] implement summary. 
-[] make everything look nice. 
-[] stretch goals. 
--- [] make sure if A is selected for the x-axis is can't be selected on the y-axis
--- [ ] why is my graph being rendered twice?
+  -[x] scatter plot  
+  -[x] use Average_BPM and Calories_Burned as initial values. 
+  -[x] only include Weight (kg),Height (m),Max_BPM,Avg_BPM,Resting_BPM,Session_Duration (hours),Calories_Burned,Fat_Percentage,BMI  
+  -[ ] add axis lables
+- [x] implement filters. 
+  -[x] when one value is selected, update the graph  
+- [ ] implement summary. 
+- [ ] make everything look nice. 
+- [ ] stretch goals. 
+  - [ ] make sure if A is selected for the x-axis is can't be selected on the y-axis
+  - [x] why is my graph being rendered twice?
 ### Next Time
 Solve multi-graph issue:  
 clear the SVG before drawing in the effect and add cleanup.

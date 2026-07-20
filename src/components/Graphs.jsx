@@ -19,7 +19,7 @@ const defaultData = parsedData.map((row) => ({
   BMI: Number(row.BMI) || 0,
 }));
 
-export default function Graphs({ selectedXAxis }) {
+export default function Graphs({ selectedXAxis, selectedYAxis }) {
 
   let data = defaultData
   let marginTop = 10
@@ -31,6 +31,8 @@ export default function Graphs({ selectedXAxis }) {
 
   let [xMax, setXMax] = useState(d3.max(data, (d) => d.selectedXAxis));
   let [xMin, setXMin] = useState(d3.min(data, (d) => d.selectedXAxis));
+  let [yMax, setYMax] = useState(d3.max(data, (d) => d[selectedYAxis]));
+  let [yMin, setYMin] = useState(d3.min(data, (d) => d[selectedYAxis]));
 
   let maxCalories = d3.max(data, (d) => d.Calories_Burned);
   let minCalories = d3.min(data, (d) => d.Calories_Burned);
@@ -51,15 +53,12 @@ export default function Graphs({ selectedXAxis }) {
   let maxBMI = d3.max(data, (d) => d.BMI);
   let minBMI = d3.min(data, (d) => d.BMI);
 
-  console.log("Max and min", xMax, xMin);
-
-
-
   const GraphTest = () => {
     const ref = useRef()
 
     useEffect(() => {
       const svgElement = d3.select(ref.current)
+      svgElement.selectAll("*").remove(); // This line is from AI, I'm not sure if manipulating the DOM directly is ok in React
       // Add x-axis
       const x = d3.scaleLinear()
         .domain([xMin, xMax])
@@ -69,7 +68,7 @@ export default function Graphs({ selectedXAxis }) {
         .call(d3.axisBottom(x));
       // Add y-axis
       const y = d3.scaleLinear()
-        .domain([minCalories, maxCalories])
+        .domain([yMin, yMax])
         .range([height, 0]);
       svgElement.append("g")
         .attr("transform", `translate(${marginRight}, -${marginRight})`)
@@ -81,11 +80,11 @@ export default function Graphs({ selectedXAxis }) {
         .data(data)
         .join("circle")
         .attr("cx", function (d) { return x(d[selectedXAxis]); })
-        .attr("cy", function (d) { return y(d.Calories_Burned); })
+        .attr("cy", function (d) { return y(d[selectedYAxis]); })
         .attr("r", 1.5)
         .style("fill", "#69b3a2")
         .attr("transform", `translate(${marginRight}, -${marginRight})`);
-    }, [xMax])
+    }, [xMax, yMax])
 
     return (
       <svg style={{ border: "1px solid white" }} width={width} height={height}
@@ -97,7 +96,9 @@ export default function Graphs({ selectedXAxis }) {
   useEffect(() => {
     setXMax(d3.max(data, (d) => d[selectedXAxis]));
     setXMin(d3.min(data, (d) => d[selectedXAxis]));
-  }, [selectedXAxis]);
+    setYMax(d3.max(data, (d) => d[selectedYAxis]));
+    setYMin(d3.min(data, (d) => d[selectedYAxis]));
+  }, [selectedXAxis, selectedYAxis]);
 
   return (
     <span>

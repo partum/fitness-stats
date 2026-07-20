@@ -9,11 +9,11 @@ function Filters(props) {
     <div className="filters">
       <span>
         <h3>X-Axis</h3>
-        <FilterRadio name="filter_data_x" default={props.default} onChange={props.onChange} />
+        <FilterRadio name="filter_data_x" default={props.defaultX} onChange={props.onChangeX} />
       </span>
       <span>
         <h3>Y-Axis</h3>
-        <FilterRadio name="filter_data_y" default="height" />
+        <FilterRadio name="filter_data_y" default={props.defaultY} onChange={props.onChangeY} />
       </span>
     </div>
   </span>)
