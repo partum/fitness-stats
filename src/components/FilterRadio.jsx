@@ -11,8 +11,8 @@ function FilterRadio(props) {
     };
     //rewrite this section using data.map to save space and time
     const data = [
-        { value: 'weight', label: 'Weight(kg)' }, //does value need to have the exact syntax of the csv?
-        { value: 'height', label: 'Height(m)' },
+        { value: 'Weight', label: 'Weight(kg)' }, //does value need to have the exact syntax of the csv?
+        { value: 'Height', label: 'Height(m)' },
         { value: 'Max_BPM', label: 'Max BPM' },
         { value: 'Avg_BPM', label: 'Average BPM' },
         { value: 'Resting_BPM', label: 'Resting BPM' },

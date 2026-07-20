@@ -188,3 +188,8 @@ label{
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.filters{
+  display: flex;
+    justify-content: center;
+}

@@ -5,7 +5,7 @@ import Filters from './components/Filters'
 import Graphs from './components/Graphs'
 
 function App() {
-  const [xAxis, setXAxis] = useState("weight");
+  const [xAxis, setXAxis] = useState("Fat_Percentage");
   const handleXAxisChange = (value) => {
     setXAxis(value);
   }
