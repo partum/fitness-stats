@@ -27,31 +27,16 @@ export default function Graphs({ selectedXAxis, selectedYAxis }) {
   let marginBottom = 30
   let marginLeft = 60
   let width = 600 - marginLeft - marginRight
-  let height = 400 - marginTop - marginBottom
+  //let height = 400 - marginTop - marginBottom
+  let height = 400
 
   let [xMax, setXMax] = useState(d3.max(data, (d) => d.selectedXAxis));
   let [xMin, setXMin] = useState(d3.min(data, (d) => d.selectedXAxis));
   let [yMax, setYMax] = useState(d3.max(data, (d) => d[selectedYAxis]));
   let [yMin, setYMin] = useState(d3.min(data, (d) => d[selectedYAxis]));
+  let [xAxisLabel, setXAxisLabel] = useState(selectedXAxis.replace(/_/g, " "));
+  let [yAxisLabel, setYAxisLabel] = useState(selectedYAxis.replace(/_/g, " "));
 
-  let maxCalories = d3.max(data, (d) => d.Calories_Burned);
-  let minCalories = d3.min(data, (d) => d.Calories_Burned);
-  let maxBPM = d3.max(data, (d) => d.Avg_BPM);
-  let minBPM = d3.min(data, (d) => d.Avg_BPM);
-  let maxWeight = d3.max(data, (d) => d.Weight);
-  let minWeight = d3.min(data, (d) => d.Weight);
-  let maxHeight = d3.max(data, (d) => d.Height);
-  let minHeight = d3.min(data, (d) => d.Height);
-  let maxMaxBPM = d3.max(data, (d) => d.Max_BPM);
-  let minMaxBPM = d3.min(data, (d) => d.Max_BPM);
-  let maxRestingBPM = d3.max(data, (d) => d.Resting_BPM);
-  let minRestingBPM = d3.min(data, (d) => d.Resting_BPM);
-  let maxSessionDuration = d3.max(data, (d) => d.Session_Duration);
-  let minSessionDuration = d3.min(data, (d) => d.Session_Duration);
-  let maxFatPercentage = d3.max(data, (d) => d.Fat_Percentage);
-  let minFatPercentage = d3.min(data, (d) => d.Fat_Percentage);
-  let maxBMI = d3.max(data, (d) => d.BMI);
-  let minBMI = d3.min(data, (d) => d.BMI);
 
   const GraphTest = () => {
     const ref = useRef()
@@ -64,17 +49,30 @@ export default function Graphs({ selectedXAxis, selectedYAxis }) {
         .domain([xMin, xMax])
         .range([0, width - marginRight]);
       svgElement.append("g")
-        .attr("transform", `translate(${marginRight}, ${height - marginBottom})`)
+        .attr("transform", `translate(${marginRight + 50}, ${height - marginBottom - 50})`)
         .call(d3.axisBottom(x));
+      // Add X axis label:
+      svgElement.append("text")
+        .attr("text-anchor", "end")
+        .attr("x", width / 2 + marginLeft)
+        //.attr("y", height + marginTop + 20)
+        .attr("y", height + marginTop - 50)
+        .text(xAxisLabel);
       // Add y-axis
       const y = d3.scaleLinear()
         .domain([yMin, yMax])
-        .range([height, 0]);
+        .range([height - 50, 0]);
       svgElement.append("g")
-        .attr("transform", `translate(${marginRight}, -${marginRight})`)
+        .attr("transform", `translate(${marginRight + 50}, -${marginRight})`)
         .call(d3.axisLeft(y));
-      // Add dots
-      //svgElement.append('g')
+      // Y axis label:
+      svgElement.append("text")
+        .attr("text-anchor", "end")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 30)
+        .attr("x", -marginTop - height / 2 + 100)
+        .text(yAxisLabel);
+      //add dots
       svgElement
         .selectAll("dot")
         .data(data)
@@ -83,7 +81,8 @@ export default function Graphs({ selectedXAxis, selectedYAxis }) {
         .attr("cy", function (d) { return y(d[selectedYAxis]); })
         .attr("r", 1.5)
         .style("fill", "#69b3a2")
-        .attr("transform", `translate(${marginRight}, -${marginRight})`);
+        .attr("transform", `translate(${marginRight + 50}, -${marginRight})`);
+
     }, [xMax, yMax])
 
     return (
@@ -98,13 +97,15 @@ export default function Graphs({ selectedXAxis, selectedYAxis }) {
     setXMin(d3.min(data, (d) => d[selectedXAxis]));
     setYMax(d3.max(data, (d) => d[selectedYAxis]));
     setYMin(d3.min(data, (d) => d[selectedYAxis]));
+    setXAxisLabel(selectedXAxis.replace(/_/g, " "));
+    setYAxisLabel(selectedYAxis.replace(/_/g, " "));
   }, [selectedXAxis, selectedYAxis]);
 
   return (
     <span>
       <h3>Title</h3>
       {GraphTest()}
-      <h2>Test</h2>
+
     </span>
   );
 }
