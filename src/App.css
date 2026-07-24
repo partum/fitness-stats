@@ -183,13 +183,48 @@
   }
 }
 
-label{
-  display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
 .filters{
   display: flex;
     justify-content: center;
 }
+
+p{
+  text-align: left;
+  max-width: 680px; margin: 0 auto 16px; color: #5d566c;
+}
+
+#root{
+  padding: 0 10px;
+  border: none;
+  border-inline: none;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  justify-content: center;
+  /* margin-top:50px; */
+}
+
+.card{
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 14px 14px 0px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+h1 { letter-spacing: -1px;
+   margin-bottom: 16px; }
+
+   label{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center; 
+    gap: 10px; 
+    padding: 8px 12px; 
+   }
+
+   input[type="radio"] { accent-color: #38c7f6; }

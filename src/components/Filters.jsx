@@ -4,7 +4,7 @@ import FilterRadio from './FilterRadio';
 
 function Filters(props) {
 
-  return (<span>
+  return (<span className="card">
     <h2>Filters</h2>
     <div className="filters">
       <span>

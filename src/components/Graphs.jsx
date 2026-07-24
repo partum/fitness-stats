@@ -80,7 +80,7 @@ export default function Graphs({ selectedXAxis, selectedYAxis }) {
         .attr("cx", function (d) { return x(d[selectedXAxis]); })
         .attr("cy", function (d) { return y(d[selectedYAxis]); })
         .attr("r", 1.5)
-        .style("fill", "#69b3a2")
+        .style("fill", "#38c7f6")
         .attr("transform", `translate(${marginRight + 50}, -${marginRight})`);
 
     }, [xMax, yMax])
@@ -102,8 +102,7 @@ export default function Graphs({ selectedXAxis, selectedYAxis }) {
   }, [selectedXAxis, selectedYAxis]);
 
   return (
-    <span>
-      <h3>Title</h3>
+    <span className="card">
       {GraphTest()}
 
     </span>

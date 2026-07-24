@@ -16,10 +16,13 @@ function App() {
 
   return (
     <>
-      <h1>Fitness Stats</h1>
+      <h1>Fitness Metrics</h1>
+      <p>Fitness data exploration with filterable scatter plot</p>
       <Summary />
-      <Filters defaultX={xAxis} defaultY={yAxis} onChangeX={handleXAxisChange} onChangeY={handleYAxisChange} />
-      <Graphs selectedXAxis={xAxis} selectedYAxis={yAxis} />
+      <div className="grid">
+        <Filters defaultX={xAxis} defaultY={yAxis} onChangeX={handleXAxisChange} onChangeY={handleYAxisChange} />
+        <Graphs selectedXAxis={xAxis} selectedYAxis={yAxis} />
+      </div>
     </>
   )
 }

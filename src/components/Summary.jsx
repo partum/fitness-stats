@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 function Summary() {
-    return <span>
+    return <span className="card">
         <h2>Summary</h2>
-        <p>This is a simple summary component.</p>
-        <p>The idea is to summarize what is seen on the graph in words. Hopefully I will be able to make it dynamic and update with the filters.</p>
+        <p>The Fitness Tracker Dataset contains detailed information about individuals' fitness metrics, exercise routines,
+            and health parameters.
+            This dataset is designed to provide insights into fitness trends, workout habits, and overall health patterns. </p>
     </span>;
 }
 export default Summary;
