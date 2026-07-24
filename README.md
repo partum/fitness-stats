@@ -1,25 +1,28 @@
-## To Do
-- [x] create a dummy summary  
-- [x] decide exactly what the graph should show. 
-  - [x] what should be on the x axis? What should be on the y axis?  
-  - [x] what should be filtered?  
-- [x] create a dummy filter section. 
-- [x] implement graph. 
-  - [x] scatter plot  
-  - [x] use Average_BPM and Calories_Burned as initial values. 
-  - [x] only include Weight (kg),Height (m),Max_BPM,Avg_BPM,Resting_BPM,Session_Duration (hours),Calories_Burned,Fat_Percentage,BMI  
-  - [x] add axis lables
-- [x] implement filters. 
-  - [x] when one value is selected, update the graph  
-- [x] implement summary. 
-- [ ] make everything look nice. 
-- [x] stretch goals. 
-  - [!] make sure if A is selected for the x-axis is can't be selected on the y-axis
-  - [x] why is my graph being rendered twice?
-### Next Time
-Solve multi-graph issue:  
-clear the SVG before drawing in the effect and add cleanup.
-## What I've learned
-If vite is not recognized when you run `npm run dev` and you have cloned the repository this is because the node module folder hasn't been build yet. Run `npm install` first.  
-I don't think I can work on this project on my Windows PC because I created it on my Mac.
-https://www.kaggle.com/datasets/nadeemajeedch/fitness-tracker-dataset/data
+# Fitness Stats
+This is a demonstration of data visualization using d3.js. There is a filter function that allows the user to switch
+what variables appear on the graph.
+## Technologies 
+- React
+- Vite
+- HTML
+- CSS
+- CSV (data set from here)[https://www.kaggle.com/datasets/nadeemajeedch/fitness-tracker-dataset/data]
+- d3.js
+## Features 
+- d3 scatterplot function
+- state variables
+- reading from an SVG
+## The Process 
+I had to clean up the data a little bit because there were some missing values. I then constructed the graph using
+static values, then added state so that the graph would be updated by the user.
+## What I Learned 
+I have some d3 experience but in this project I learned how to adapt it for use in React. 
+Initially I had an issue with the updated graph being drawn on top of the old graph but I was able to solve the issue
+by clearning the graph before every rerender. 
+## What Could Be Improved 
+I think the graph component could be broken down into another component or a custom hook
+## Demonstration    
+![Screenshot](fitness-stats-phi.vercel.app_(1).png)
+
+
+
