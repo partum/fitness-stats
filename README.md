@@ -6,7 +6,7 @@ what variables appear on the graph.
 - Vite
 - HTML
 - CSS
-- CSV (data set from here)[https://www.kaggle.com/datasets/nadeemajeedch/fitness-tracker-dataset/data]
+- CSV [data set from here](https://www.kaggle.com/datasets/nadeemajeedch/fitness-tracker-dataset/data)
 - d3.js
 ## Features 
 - d3 scatterplot function
@@ -22,7 +22,7 @@ by clearning the graph before every rerender.
 ## What Could Be Improved 
 I think the graph component could be broken down into another component or a custom hook
 ## Demonstration    
-![Screenshot](fitness-stats-phi.vercel.app_(1).png)
+![Screenshot](<fitness-stats-phi.vercel.app_ (1).png>)
 
 
 
